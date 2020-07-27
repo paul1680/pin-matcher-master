@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pin Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="pin-generator half-width">
+                    <input id="generator" class="form-control" type="text">
+                    <button id="generatorBtn" class="generate-btn">Generate Pin</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-section half-width">
+                    <input id="display" class="form-control" type="text">
+                    <div class="numbers">
+                        <div class="calc-body">
+                            <div class="calc-button-row">
+                              <div id="seven" class="button">7</div>
+                              <div id="eight" class="button">8</div>
+                              <div id="nine" class="button">9</div>
+                            </div>
+                            <div class="calc-button-row">
+                              <div id="four" class="button">4</div>
+                              <div id="five" class="button">5</div>
+                              <div id="six" class="button">6</div>
+                            </div>
+                            <div class="calc-button-row">
+                              <div id="one" class="button">1</div>
+                              <div id="two" class="button">2</div>
+                              <div id="three" class="button">3</div>
+                            </div>
+                            <div class="calc-button-row">
+                                <div id="back" class="button"><</div>
+                                <div id="zero" class="button">0</div>
+                                <div id="cancel" class="button">C</div>
+                            </div>
+                            <div>
+                                <button id="submit" type="submit" class="submit-btn">Submit</button>
+                                <p class="action-left">3 try left</p>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="notify-section">
+            <p class="notify" id="first">❌ Pin Didn't Match, Please try again</p>
+            <p class="notify" id="second" >✅ Pin Matched... Secret door is opening for you</p>
+        </div>
+    </div>
+    <script>
+        var generatorBtn = document.getElementById('generatorBtn');
+        generatorBtn.addEventListener('click', function(){
+            var c = Math.random()*10;
+            var d = Math.floor(c);
+            var v = d.toString();
+            var e = Math.random()*10;
+            var f = Math.floor(e);
+            var x = f.toString();
+            var g = Math.random()*10;
+            var h = Math.floor(f);
+            var y = h.toString();
+            var i = Math.random()*10;
+            var j = Math.floor(g);
+            var z = j.toString();
+            var k = v+x+y+z;
+
+        document.getElementById('generator').focus();
+        document.getElementById('generator').value = k;
+              
+        })
+       function disp(id){
+        document.getElementById('display').focus(); 
+        document.getElementById(id).value = document.getElementById(id).innerText;
+        currentValue = document.getElementById(id).value;
+           if(display.value == ''){
+        document.getElementById('display').value = currentValue;
+            }
+            else{
+                var prviousValue = document.getElementById('display').value;
+                var newValue = prviousValue + currentValue;
+                document.getElementById('display').value = newValue;
+                
+            }
+       }
+
+        var one = document.getElementById('one');
+        one.addEventListener('click',function(){
+            disp('one');
+        })
+        var two = document.getElementById('two');
+        two.addEventListener('click',function(){
+            disp('two')
+        })
+        var three = document.getElementById('three');
+        three.addEventListener('click',function(){
+            disp('three')
+        })
+        var four = document.getElementById('four');
+        four.addEventListener('click',function(){
+            disp('four')
+        })
+        var five = document.getElementById('five');
+        five.addEventListener('click',function(){
+            disp('five')
+        })
+        var six = document.getElementById('six');
+        six.addEventListener('click',function(){
+            disp('six')
+        })
+        var seven = document.getElementById('seven');
+        seven.addEventListener('click',function(){
+            disp('seven')
+        })
+        var eight = document.getElementById('eight');
+        eight.addEventListener('click',function(){
+            disp('eight')
+        })
+        var nine = document.getElementById('nine');
+        nine.addEventListener('click',function(){
+            disp('nine')
+        })
+        var zero = document.getElementById('zero');
+        zero.addEventListener('click',function(){
+            disp('zero')
+        })
+        var cancel = document.getElementById('cancel');
+        cancel.addEventListener('click',function(){
+        document.getElementById('display').value = '';   
+        })
+        var back = document.getElementById('back');
+        back.addEventListener('click',function(){
+            var valueDisplay = document.getElementById('display').value;
+            var valueDisplay2 = valueDisplay.length - 1;
+            var output = valueDisplay.substr(0, valueDisplay2);
+            document.getElementById('display').value = output;
+            document.getElementById('display').focus();
+        })
+
+            
+
+     var submit = document.getElementById('submit');
+     submit.addEventListener('click',function(){
+         document.getElementById('generator').focus();
+         var first = document.getElementById('first');
+         var second = document.getElementById('second');
+         var generateValue = document.getElementById('generator').value;
+         var gValue = parseFloat(generateValue);
+         var displayValue = document.getElementById('display').value;
+         var dValue = parseFloat(displayValue);
+         if( gValue == dValue){
+             second.style.display = 'block';
+             first.style.display = 'none';
+         }
+         else{
+             first.style.display = 'block';
+             second.style.display = 'none';
+         }
+         document.getElementById('display').value = '';
+         document.getElementById('generator').value = '';
+     })   
+
+
+
+
+
+    </script>
+</body>
+</html>
