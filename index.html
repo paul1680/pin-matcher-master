@@ -41,20 +41,23 @@
                                 <div id="zero" class="button">0</div>
                                 <div id="cancel" class="button">C</div>
                             </div>
-                            <div>
+                            <h3 id="disable">Submit button Is Disabled for now.</h3>
+                            <div id="sub">
                                 <button id="submit" type="submit" class="submit-btn">Submit</button>
-                                <p class="action-left">3 try left</p>
+                                <p class="action-left"><span id="try">3</span> try left</p>
                             </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="notify-section">
+        <div id="notify" class="notify-section">
             <p class="notify" id="first">❌ Pin Didn't Match, Please try again</p>
             <p class="notify" id="second" >✅ Pin Matched... Secret door is opening for you</p>
         </div>
     </div>
     <script>
+        // random number generator
+        
         var generatorBtn = document.getElementById('generatorBtn');
         generatorBtn.addEventListener('click', function(){
             var c = Math.random()*10;
@@ -75,6 +78,9 @@
         document.getElementById('generator').value = k;
               
         })
+
+        // Display button 
+
        function disp(id){
         document.getElementById('display').focus(); 
         document.getElementById(id).value = document.getElementById(id).innerText;
@@ -143,7 +149,7 @@
             document.getElementById('display').focus();
         })
 
-            
+         //submit button   
 
      var submit = document.getElementById('submit');
      submit.addEventListener('click',function(){
@@ -154,16 +160,26 @@
          var gValue = parseFloat(generateValue);
          var displayValue = document.getElementById('display').value;
          var dValue = parseFloat(displayValue);
-         if( gValue == dValue){
-             second.style.display = 'block';
-             first.style.display = 'none';
-         }
-         else{
+         if( gValue != dValue){
              first.style.display = 'block';
              second.style.display = 'none';
+        var inputAmount = document.getElementById('try').innerText
+        var inputAmount2 = parseFloat(inputAmount);
+        inputAmount2--;
+        document.getElementById('try').innerText = inputAmount2;
+        if(inputAmount2 == 0){
+            sub.style.display = 'none';
+            disable.style.display = 'block';
+        }
+         }
+         else{
+            second.style.display = 'block';
+            first.style.display = 'none';
          }
          document.getElementById('display').value = '';
          document.getElementById('generator').value = '';
+
+    
      })   
 
 
